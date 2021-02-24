@@ -49,21 +49,21 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 8. @ Controllers เพิ่ม 4 New File > Cocoa Touch Class กำหนดค่าดังนี้
 - File LoginViewController
-- - Class : LoginViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : LoginViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File RegisterViewController
-- - Class : RegisterViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : RegisterViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File PhotoViewerViewController
-- - Class : PhotoViewerViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : PhotoViewerViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File VideoPlayerViewController
-- - Class : VideoPlayerViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : VideoPlayerViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 
 9. กลับไปที่ terminal พิมพ์คำสั่ง
 
