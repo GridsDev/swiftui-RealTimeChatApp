@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>swiftui-RealTimeChatApp</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body">
+        <h1 id="swiftui-realtimechatapp">swiftui-RealTimeChatApp</h1>
+<p>โปรดทราบว่าผมใช้ MacBook Pro 2020 ระบบปฏิบัติการ macOS Big Sur 11.2.1 และ Xcode 12.4
+<a href="https://iosacademy.teachable.com/courses/871451/lectures/20218529">https://iosacademy.teachable.com/courses/871451/lectures/20218529</a></p>
+<h3 id="ขั้นตอนที่-1-จัดเตรียมสภาพแวดล้อมให้พร้อมใช้งาน">ขั้นตอนที่ 1 จัดเตรียมสภาพแวดล้อมให้พร้อมใช้งาน</h3>
+<p>ในบทแนะนำนี้เราจะจัดตั้งโครงการของเราและวางรากฐาน พร้อมด้วยสภาพแวดล้อมที่จำเป็น เป็นสิ่งสำคัญที่จะต้องเริ่มต้นด้วยฐานที่แข็งแกร่งเพื่อ ทบทวน และ เพิ่มคุณสมบัติ ในขณะที่เราดำเนินการ</p>
+<ol>
+<li>
+<p>เปิด terminal เข้าไปยัง Finder โปรเจ็กจากนั้น</p>
+<pre><code> ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git init
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m &quot;Getting Started&quot;
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git log
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % pod init
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+</code></pre>
+</li>
+<li>
+<p>ที่โปรเจ็กเพิ่ม</p>
+</li>
+</ol>
+<ul>
+<li>New Group &gt; Resources</li>
+<li>New Group &gt; ViewModels</li>
+<li>New Group &gt; Models</li>
+<li>New Group &gt; Views &gt; Storyboards</li>
+<li>New Group &gt; Controllers</li>
+</ul>
+<ol start="3">
+<li>ย้าย</li>
+</ol>
+<ul>
+<li>AppDelegate.swift และ SceneDelegate.swift ไปไว้ใน Resources</li>
+<li>ViewController.swift ไปไว้ใน Controllers</li>
+<li>Assets.xcassets ไปไว้ใน Views</li>
+<li>Main.storyboard, LaunchScreen.storyboard ไปไว้ใน Views &gt; Storyboards</li>
+</ul>
+<ol start="4">
+<li>
+<p>Rename ViewController.swift เป็น ConversationsViewController.swift จากนั้น Coding @ ConversationsViewController.swift แก้ class เป็น class ConversationsViewController</p>
+</li>
+<li>
+<p>@ Main.storyboard &gt; View Controller Scene ที่แทป Inspectors ด้านขวา แก้ไข Class ให้เป็น ConversationsViewController</p>
+</li>
+<li>
+<p>@ swiftui-RealTimeChatApp ที่ Device Orientation เอาเครื่องหมายถูกออกที่</p>
+</li>
+</ol>
+<ul>
+<li>Landscape Left</li>
+<li>Landscape Right</li>
+</ul>
+<ol start="7">
+<li>
+<p>@ Info.plist ที่ Supported interface orientations (iPad) ลบ Item 2 และ Item3</p>
+</li>
+<li>
+<p>@ Controllers เพิ่ม 4 New File &gt; Cocoa Touch Class กำหนดค่าดังนี้</p>
+</li>
+</ol>
+<ul>
+<li>File LoginViewController
+<ul>
+<li>Class : LoginViewController</li>
+<li>Subclass of : UIViewController</li>
+<li>Language : Swift</li>
+</ul>
+</li>
+<li>File RegisterViewController
+<ul>
+<li>Class : RegisterViewController</li>
+<li>Subclass of : UIViewController</li>
+<li>Language : Swift</li>
+</ul>
+</li>
+<li>File PhotoViewerViewController
+<ul>
+<li>Class : PhotoViewerViewController</li>
+<li>Subclass of : UIViewController</li>
+<li>Language : Swift</li>
+</ul>
+</li>
+<li>File VideoPlayerViewController
+<ul>
+<li>Class : VideoPlayerViewController</li>
+<li>Subclass of : UIViewController</li>
+<li>Language : Swift</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>
+<p>กลับไปที่ terminal พิมพ์คำสั่ง</p>
+<pre><code> ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+ 
+ ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m &quot;Wrap up getting started&quot;
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>
+<p>ปิด terminal แล้วเปิดขึ้นมาใหม่</p>
+<pre><code>  ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+</code></pre>
+</li>
+</ul>
+<h3 id="ขั้นตอนที่-2-login--registration">ขั้นตอนที่ 2 Login &amp; Registration</h3>
+<p>ในส่วนนี้เราจะสร้างหน้าจอเข้าสู่ระบบและการลงทะเบียน นอกจากนี้เราจะเริ่มเชื่อมโยงเวิร์กโฟลว์ Firebase ที่จำเป็นสำหรับบัญชีที่ใช้อีเมล/รหัสผ่าน</p>
+
+    </body>
+    </html>
