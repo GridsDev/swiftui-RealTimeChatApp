@@ -1,25 +1,28 @@
 # swiftui-RealTimeChatApp
+โปรดทราบว่าผมใช้ MacBook Pro 2020 ระบบปฏิบัติการ macOS Big Sur 11.2.1 และ Xcode 12.4 
 https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 ### ขั้นตอนที่ 1 จัดเตรียมสภาพแวดล้อมให้พร้อมใช้งาน
 
+ในบทแนะนำนี้เราจะจัดตั้งโครงการของเราและวางรากฐาน พร้อมด้วยสภาพแวดล้อมที่จำเป็น เป็นสิ่งสำคัญที่จะต้องเริ่มต้นด้วยฐานที่แข็งแกร่งเพื่อ ทบทวน และ เพิ่มคุณสมบัติ ในขณะที่เราดำเนินการ
+
 1. เปิด terminal เข้าไปยัง Finder โปรเจ็กจากนั้น
 
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git init
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git init
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Getting Started"
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Getting Started"
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git log
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git log
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % pod init
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % pod init
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
 2. ที่โปรเจ็กเพิ่ม 
 - New Group > Resources
@@ -46,31 +49,31 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 8. @ Controllers เพิ่ม 4 New File > Cocoa Touch Class กำหนดค่าดังนี้
 - File LoginViewController
-- - Class : LoginViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : LoginViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File RegisterViewController
-- - Class : RegisterViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : RegisterViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File PhotoViewerViewController
-- - Class : PhotoViewerViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : PhotoViewerViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 - File VideoPlayerViewController
-- - Class : VideoPlayerViewController
-- - Subclass of : UIViewController
-- - Language : Swift
+  - Class : VideoPlayerViewController
+  - Subclass of : UIViewController
+  - Language : Swift
 
 9. กลับไปที่ terminal พิมพ์คำสั่ง
 
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
  
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Wrap up getting started"
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Wrap up getting started"
         
 - ปิด terminal แล้วเปิดขึ้นมาใหม่
 
@@ -78,3 +81,5 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 
 ### ขั้นตอนที่ 2 Login & Registration
+
+ในส่วนนี้เราจะสร้างหน้าจอเข้าสู่ระบบและการลงทะเบียน นอกจากนี้เราจะเริ่มเชื่อมโยงเวิร์กโฟลว์ Firebase ที่จำเป็นสำหรับบัญชีที่ใช้อีเมล/รหัสผ่าน
