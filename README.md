@@ -1,5 +1,5 @@
 # swiftui-RealTimeChatApp
-โปรดทราบว่าผมใช้ macOS Big Sur 11.2.1 และ Xcode 12.4 
+โปรดทราบว่าผมใช้ MacBook Pro 2020 ระบบปฏิบัติการ macOS Big Sur 11.2.1 และ Xcode 12.4 
 https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 ### ขั้นตอนที่ 1 จัดเตรียมสภาพแวดล้อมให้พร้อมใช้งาน
