@@ -8,21 +8,21 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 1. เปิด terminal เข้าไปยัง Finder โปรเจ็กจากนั้น
 
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git init
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git init
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Getting Started"
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Getting Started"
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git log
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git log
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % pod init
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % pod init
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
 2. ที่โปรเจ็กเพิ่ม 
 - New Group > Resources
@@ -67,13 +67,13 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 
 9. กลับไปที่ terminal พิมพ์คำสั่ง
 
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git add .
  
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git status
         
-        gridsjivapong@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Wrap up getting started"
+        ai@Gridss-MacBook-Pro swiftui-RealTimeChatApp % git commit -m "Wrap up getting started"
         
 - ปิด terminal แล้วเปิดขึ้นมาใหม่
 
