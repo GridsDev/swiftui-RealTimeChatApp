@@ -128,7 +128,7 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 2. Copy Bundle Identifier แล้วไปที่เว็บ firebase.google.com
 
 - Create Project ใน Console Firebase (รหัสชุด iOS : คือ Bundle Identifier ที่ Copy ไว้จากข้อที่แล้ว) [ลงทะเบียนแอป]
-- Download GoogleService-Info.plist
+- Download GoogleService-Info.plist แล้วลากไปไว้ใน Application Project ของเรา
 
      
      
