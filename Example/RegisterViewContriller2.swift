@@ -1,10 +1,3 @@
-//
-//  RegisterViewController.swift
-//  swiftui-RealTimeChatApp
-//
-//  Created by Grids Jivapong on 24/2/2564 BE.
-//
-
 import UIKit
 import FirebaseAuth
 
@@ -20,7 +13,7 @@ class RegisterViewController: UIViewController {
     // define imageView with UIImageView
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person.circle")
+        imageView.image = UIImage(systemName: "person")
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
@@ -217,40 +210,19 @@ class RegisterViewController: UIViewController {
                 return
         }
         // Firebase Login
-        DatabaseManager.shared.userExists(with: email, completion: { [weak self] exists in
-            
-            guard let strongSelf = self else {
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
+            guard let result = authResult, error == nil else {
+                print("Error cureatinguser")
                 return
             }
-            
-            guard !exists else {
-                // user already exists
-                strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
-                return
-            }
-            
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
-
-                guard authResult != nil, error == nil else {
-                    print("Error cureating user")
-                    return
-                }
-                // ใช้เพื่อทดสอบ
-                // let user = result.user
-                // print("Created User: \(user)")
-                DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
-                                                                    lastName: lastName,
-                                                                    emailAddress: email))
-                
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-            })
-            
+            let user = result.user
+            print("Created User: \(user)")
         })
-        
+                
     }
-    func alertUserLoginError(message: String = "Please enter all information to create a new account.") {
+    func alertUserLoginError() {
         let alert = UIAlertController(title: "Woops",
-                                      message: message,
+                                      message: "Please enter all information to create a new account.",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss",
                                       style: .cancel,

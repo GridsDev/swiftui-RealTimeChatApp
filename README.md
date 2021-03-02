@@ -34,7 +34,7 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 - New Group > Controllers > Login
 
 3. ย้าย 
-- AppDelegate.swift และ SceneDelegate.swift ไปไว้ใน Resources และเพิ่ม Swift File ชื่อ Extensions.swift
+- AppDelegate.swift และ SceneDelegate.swift ไปไว้ใน Resources และเพิ่ม Swift File ชื่อ Extensions.swift และ DatabaseManager.swift
 - ViewController.swift ไปไว้ใน Controllers
 - Assets.xcassets ไปไว้ใน Views
 - Main.storyboard, LaunchScreen.storyboard ไปไว้ใน Views > Storyboards
@@ -110,7 +110,6 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 ### ขั้นตอนที่ 3 Firebase Set Up & Email/Password Log In
 
 1. เปิด Terminal ใช้คำสั่ง cd เข้าไปยังไฟลเดอร์ Project
-
 - $ open Podfile
 
 เพิ่มรายการที่ต้องการ install
@@ -123,15 +122,121 @@ https://iosacademy.teachable.com/courses/871451/lectures/20218529
 - $ pod install
 - $ open [Project Name].xcworkspace 
 
-      open swiftui-RealTimeChatApp.xcworkspace/
+        open swiftui-RealTimeChatApp.xcworkspace/
      
 2. Copy Bundle Identifier แล้วไปที่เว็บ firebase.google.com
 
 - Create Project ใน Console Firebase (รหัสชุด iOS : คือ Bundle Identifier ที่ Copy ไว้จากข้อที่แล้ว) [ลงทะเบียนแอป]
 - Download GoogleService-Info.plist แล้วลากไปไว้ใน Application Project ของเรา
+- คลิ๊ก [ถักไป] จนถึง [เสร็จสิ้น]
 
-     
-     
-### ขั้นตอนที่ 4 Firebase Set Up & Email/Password Log In
+3. @AppDelegate.swift 
 
+        import Firebase
+
+- เพิ่ม FirebaseApp.configure() ที่ไฟล์ AppDelegate.swift ตามตัวอย่าง
+
+        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                        
+            FirebaseApp.configure()
+            
+            return true
+        }
+             
+4. ไปที่หน้าเว็บ Firebase อีกครั้ง 
+- @เมนูฝั่งซ้ายเลือก Authentication > คลิ๊ก [เริ่มใช้งาน]
+- @tab Sign-in method เปิดใช้งาน Email/Password 
+
+5. @RegisterViewController.swift เพิ่ม
+
+        import Firebase
+        
+และเพิ่ม
+
+        // Firebase Login
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
+            guard let result = authResult, error == nil else {
+                print("Error cureatinguser")
+                return
+            }
+            let user = result.user
+            print("Created User: \(user)")
+        })
+
+6. @LoginViewController.swift 
+
+        import Firebase
+
+และ 
+
+        // Firebase Log in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: {authResult, error in
+            guard let result = authResult, error == nil else {
+                print("Failed to log in user with email: \(email)")
+                return
+            }
+            let user = result.user
+            print("Logged In User: \(user)")
+        })
+        
+ถึงตรงนี้ แอป ควรจะสามารถ SignIUp และ SignIn ได้อย่างไม่ติดปัญหาใดๆ
+
+Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อข้อถัดไปกันเลย
+
+### ขั้นตอนที่ 4 Database Set Up
+
+> กรณีที่ยังไม่เคยติดตั้ง SF Symbols ให้ไปที่เว็บไซต์ developer.apple.com/design/ ศึกษาข้อมูลก่อน Download หลังจากนั้นทำการ Download และติดตั้ง
+
+** ถ้า ติดการแสดงผลอยู่ที่หน้า BG ให้ไปที่เมนู Device ใน Xcode แล้วเลือก Erase All content and setting ** 
+
+** ตรวจสอบให้แน่ใจว่าได้พิมพ์คำสั่ง validateAuth() แล้ว
+
+1. ไปที่เว็บ firebase.google.com > Cloud Firestore คลิ๊กที่ [สร้างฐานข้อมูล] เลือก เริ่มต้นในโหมดทดสอบ คลิ๊ก [ถัดไป] ตำแหน่ง Cloud Firestore อันนี้ผมเลือกเป็น asia-southeast2 สามารถเลือกตามโซนที่ต้องการใช้งานได้เลย จากนั้น คลิ๊ก [เปิดใช้] 
+
+2. ที่เว็บ firebase.google.com > เลือกเมนู Realtime Database คลิ๊กที่ [สร้างฐานข้อมูล] ตำแหน่งของ Realtime Database ผมเลือกเป็น สหรัฐอเมริกา (us-central1) จากนั้น คลิ๊ก [ถัดไป] เลือก เริ่มต้นในโหมดทดสอบ คลิ๊ก [เปิดใช้] เมื่อโปรแกรมทำงานเสร็จสิ้น ให้คลิ๊กที่เมนู [กฎ] แก้ไขกฎ จากนั้น คลิ๊กที่ [เผยแพร่]
+
+        {
+            "rules": {
+                ".read": true,
+                ".write": true
+            }
+        }
+
+3. @DatabaseManager.swift 
+- import FirebaseDatabase
+- เพิ่ม Code นี้
+        
+        final class DatabaseManager {
+            
+            static let shared = DatabaseManager()
+            
+            private let database = Database.database().reference()
+            
+            public func test() {
+            
+                database.child("foo").setValue(["something": true])
+                
+            }
+            
+        }
+
+3. @ConversationsViewController ใน class ConversationsViewController ใต้ func viewDidLoad() เพิ่ม Code ด้านล่างนี้
+
+        DatabaseManager.shared.test()
+        
+4. @RegisterViewController
+
+
+
+5. ไปที่เว็บ firebase.google.com > Authentication ลบ User เดิมออกก่อน สาเหตุเพราะเมื่อสร้าง user account แล้ว จะเพิ่ม database ไปพร้อมกันเพื่อเก็บข้อมูลต่างๆของ user แต่เนื่องจากก่อนหน้านี้เราได้มีการทดสอบเพิ่ม user account ไปแล้วแต่ ณ เวลานั้นเรายังไม่ได้เพิ่ม Code ในการเพิ่มตาราง database จึงต้องลบ user account ที่ใช้ในการทดสอบก่อนหน้านี้ออกก่อน
+
+6. เปิด terminal แล้วพิมพ์คำสั่งตามนี้
+
+        $ git status
+
+        $ git add
+
+        $ git status
+
+        $ git commit -m "Handle auth session, add database"
 

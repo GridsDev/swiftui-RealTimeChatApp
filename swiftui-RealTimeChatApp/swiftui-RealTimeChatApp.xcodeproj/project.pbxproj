@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		231BC85F25ECAF9600ABC353 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231BC85E25ECAF9600ABC353 /* GoogleService-Info.plist */; };
+		231BC86525ECBDDF00ABC353 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 231BC86425ECBDDF00ABC353 /* GoogleService-Info.plist */; };
+		231BC86825EDFC8A00ABC353 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231BC86725EDFC8A00ABC353 /* DatabaseManager.swift */; };
 		235DDC5625E74BD200D3ABB2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DDC5525E74BD200D3ABB2 /* Extensions.swift */; };
 		23E4016725E5FCA6006F94AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E4016625E5FCA6006F94AA /* AppDelegate.swift */; };
 		23E4016925E5FCA6006F94AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E4016825E5FCA6006F94AA /* SceneDelegate.swift */; };
@@ -26,7 +27,8 @@
 
 /* Begin PBXFileReference section */
 		02B2EF566AD219D4FC091A1A /* Pods-swiftui-RealTimeChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftui-RealTimeChatApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-swiftui-RealTimeChatApp/Pods-swiftui-RealTimeChatApp.release.xcconfig"; sourceTree = "<group>"; };
-		231BC85E25ECAF9600ABC353 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Controllers/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231BC86425ECBDDF00ABC353 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Example/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		231BC86725EDFC8A00ABC353 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		235DDC5525E74BD200D3ABB2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		23E4016325E5FCA6006F94AA /* swiftui-RealTimeChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftui-RealTimeChatApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E4016625E5FCA6006F94AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,13 +81,13 @@
 		23E4016525E5FCA6006F94AA /* swiftui-RealTimeChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				231BC86425ECBDDF00ABC353 /* GoogleService-Info.plist */,
 				23E4017F25E602DC006F94AA /* Resources */,
 				23E4017E25E602CB006F94AA /* ViewModels */,
 				23E4017D25E602A0006F94AA /* Models */,
 				23E4017C25E6028C006F94AA /* Views */,
 				23E4017B25E6019B006F94AA /* Controllers */,
 				23E4017425E5FCAA006F94AA /* Info.plist */,
-				231BC85E25ECAF9600ABC353 /* GoogleService-Info.plist */,
 			);
 			path = "swiftui-RealTimeChatApp";
 			sourceTree = "<group>";
@@ -132,6 +134,7 @@
 				23E4016625E5FCA6006F94AA /* AppDelegate.swift */,
 				23E4016825E5FCA6006F94AA /* SceneDelegate.swift */,
 				235DDC5525E74BD200D3ABB2 /* Extensions.swift */,
+				231BC86725EDFC8A00ABC353 /* DatabaseManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -231,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23E4017325E5FCAA006F94AA /* LaunchScreen.storyboard in Resources */,
-				231BC85F25ECAF9600ABC353 /* GoogleService-Info.plist in Resources */,
+				231BC86525ECBDDF00ABC353 /* GoogleService-Info.plist in Resources */,
 				23E4017025E5FCAA006F94AA /* Assets.xcassets in Resources */,
 				23E4016E25E5FCA6006F94AA /* Main.storyboard in Resources */,
 			);
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23E4018325E622D0006F94AA /* LoginViewController.swift in Sources */,
+				231BC86825EDFC8A00ABC353 /* DatabaseManager.swift in Sources */,
 				23E4018725E62473006F94AA /* RegisterViewController.swift in Sources */,
 				23E4016B25E5FCA6006F94AA /* ConversationsViewController.swift in Sources */,
 				23E4018D25E624B4006F94AA /* VideoPlayerViewController.swift in Sources */,
