@@ -250,5 +250,8 @@ Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อ
 - @Scene View Controller  เปลี่ยนชื่อแทป Title เป็น Profile และเมนูด้านขวา ใน TabMenu เลือก Show The Identity inspator ในส่วนของ Class เปลี่ยนเป็น ProfileViewController
 - @Scene Chats คลิ๊กที่ Title ใน Scene Chats จากนั้นที่เมนูด้านขวา ใน TabMenu เลือก Show The Attributes inspator ที่ navigation Bar ติ๊กที่หน้า Perfers Large Titles ทำแบบเดียวกันกับ Scene Profile
 
-3.
+3. ไปที่เว็บ https://developers.facebook.com/ สมัครสมาชิคและ create app เลือก สร้างการใช้งานแบบเชื่อมต่อระหว่างแอพ 
+- เมื่อสร้างแอพเสร็จสิ้น ให้เลือก {การเข้าสู่ระบบ Facebook} > [การตั้งค่า] 
+- เลือก iOS จากนั้นที่ Dropdown Menu เลือก SDK: Cocoapods มองหาคำว่า "เพิ่มรายการต่อไปนี้ลงใน Podfile ของคุณ: pod 'FBSDKLoginKit'"
+- เปิด terminal ไปที่โฟลเดอร์โปรเจ็ก เปิดไฟล์ pod มาแก้ไขโดยเพิ่ม pod 'FBSDKLoginKit' จากนั้นทำการ install Podfile
 
