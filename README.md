@@ -240,3 +240,15 @@ Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อ
 
         $ git commit -m "Handle auth session, add database"
 
+### ขั้นตอนที่ 5 Facebook Log In ในขั้นตอนนี้เราจะได้เรียนรูกเกี่ยวกับการใช้งาน StoryBoard
+
+1. @Main.storyboard
+
+2. เลือก Tab Bar Controller แล้วเปิดเมนูด้านขวา ในส่วนของ View Controller ติ๊กที่หน้า Is Initial View Controller
+- เปลี่ยนชื่อ Item Scene ทั้ง 2 Scene ตามลำดับ จาก Item เป็น Chats และ Item เป็น Profile
+- @Scene Conversations View Controller เปลี่ยนชื่อแทป Title เป็น Chats และเมนูด้านขวา ใน TabMenu เลือก Show The Identity inspator ในส่วนของ Class เปลี่ยนเป็น ConversationsViewController
+- @Scene View Controller  เปลี่ยนชื่อแทป Title เป็น Profile และเมนูด้านขวา ใน TabMenu เลือก Show The Identity inspator ในส่วนของ Class เปลี่ยนเป็น ProfileViewController
+- @Scene Chats คลิ๊กที่ Title ใน Scene Chats จากนั้นที่เมนูด้านขวา ใน TabMenu เลือก Show The Attributes inspator ที่ navigation Bar ติ๊กที่หน้า Perfers Large Titles ทำแบบเดียวกันกับ Scene Profile
+
+3.
+

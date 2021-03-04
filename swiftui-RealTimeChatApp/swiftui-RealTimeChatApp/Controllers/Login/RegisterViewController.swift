@@ -248,6 +248,7 @@ class RegisterViewController: UIViewController {
         })
         
     }
+    
     func alertUserLoginError(message: String = "Please enter all information to create a new account.") {
         let alert = UIAlertController(title: "Woops",
                                       message: message,
@@ -271,6 +272,7 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == emailField {

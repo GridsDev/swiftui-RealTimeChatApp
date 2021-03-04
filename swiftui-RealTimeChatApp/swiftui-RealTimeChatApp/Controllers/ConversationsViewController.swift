@@ -13,7 +13,8 @@ class ConversationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .purple
+        // ใช้เพื่อทดสอบ
+        // view.backgroundColor = .purple
         // ใช้เพื่อทดสอบ
         // DatabaseManager.shared.test()
     }
