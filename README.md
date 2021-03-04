@@ -254,4 +254,6 @@ Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อ
 - เมื่อสร้างแอพเสร็จสิ้น ให้เลือก {การเข้าสู่ระบบ Facebook} > [การตั้งค่า] 
 - เลือก iOS จากนั้นที่ Dropdown Menu เลือก SDK: Cocoapods มองหาคำว่า "เพิ่มรายการต่อไปนี้ลงใน Podfile ของคุณ: pod 'FBSDKLoginKit'"
 - เปิด terminal ไปที่โฟลเดอร์โปรเจ็ก เปิดไฟล์ pod มาแก้ไขโดยเพิ่ม pod 'FBSDKLoginKit' จากนั้นทำการ install Podfile
+- กลับไปที่ developers.facebook.com แล้ว คลิ๊ก [Next] หรือ [ถัดไป]
+- ใส่ Bundle ID และ คลิ๊ก [Save] หรือ [บันทึก] biz.microtronic.app.swiftui-RealTimeChatApp
 
