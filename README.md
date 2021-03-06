@@ -252,8 +252,69 @@ Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อ
 
 3. ไปที่เว็บ https://developers.facebook.com/ สมัครสมาชิคและ create app เลือก สร้างการใช้งานแบบเชื่อมต่อระหว่างแอพ 
 - เมื่อสร้างแอพเสร็จสิ้น ให้เลือก {การเข้าสู่ระบบ Facebook} > [การตั้งค่า] 
-- เลือก iOS จากนั้นที่ Dropdown Menu เลือก SDK: Cocoapods มองหาคำว่า "เพิ่มรายการต่อไปนี้ลงใน Podfile ของคุณ: pod 'FBSDKLoginKit'"
+- เลือก iOS จากนั้นที่ Dropdown Menu เลือก SDK: Cocoapods มองหาคำว่า "เพิ่มรายการต่อไปนี้ลงใน Podfile ของคุณ: pod 'FBSDKLoginKit'" (อย่าเพิ่งปิดหน้าเว็บนี้)
 - เปิด terminal ไปที่โฟลเดอร์โปรเจ็ก เปิดไฟล์ pod มาแก้ไขโดยเพิ่ม pod 'FBSDKLoginKit' จากนั้นทำการ install Podfile
 - กลับไปที่ developers.facebook.com แล้ว คลิ๊ก [Next] หรือ [ถัดไป]
-- ใส่ Bundle ID และ คลิ๊ก [Save] หรือ [บันทึก] biz.microtronic.app.swiftui-RealTimeChatApp
+- ใส่ Bundle ID และ คลิ๊ก [Save] หรือ [บันทึก] แล้ว คลิ๊ก [Continue] หรือ [ดำเนินการต่อ] จากนั้น คลิ๊ก [Next] หรือ [ถัดไป]
+- กำหนดค่า Info.plist ทำตามขั้นตอนไปของเว็บ developers.facebook.com เสร็จแล้ว คลิ๊ก [Next] หรือ [ถัดไป] เพื่อทำขั้นตอนถัดไป
+- เชื่อมต่อตัวแทนแอพ ทำตามขั้นตอนไปของเว็บ developers.facebook.com เสร็จแล้ว คลิ๊ก [Next] หรือ [ถัดไป] เพื่อทำขั้นตอนถัดไป
+- เพิ่มปุ่มการเข้าสู่ระบบด้วย Facebook ทำตามขั้นตอนไปของเว็บ developers.facebook.com โดย @LoginViewController.swift เพิ่ม import FBSDKLoginKit และ แทรก Code ด้านล่างไปยังตำแหน่งที่เราต้องการแสดงผลปุ่ม Facebook LogIn 
+
+        ... private let loginButton: UIButton = {...}()
+        
+        private let facebookLoginButton = FBLoginButton() 
+        
+        ... scrollView.addSubview(...)
+        
+        scrollView.addSubview(facebookLoginButton)
+        
+        ... loginButton.frame = CGRect(...)
+        
+        facebookLoginButton.frame = CGRect(x: 30,
+                                   y: loginButton.bottom+10,
+                                   width: scrollView.width-60,
+                                   height: 52)
+        facebookLoginButton.frame.origin.y = loginButton.bottom+20
+
+    เสร็จแล้ว คลิ๊ก [Next] หรือ [ถัดไป] เพื่อทำขั้นตอนถัดไป
+- โครงการของเราอาศัยข้อมูลเพียงน้อยนิดจากที่ facebook ดังนั้นเราจึงต้องเลือกชนิดข้อมูลที่เราต้องการ @LoginViewController.swift เพิ่ม Code นี้ facebookLoginButton.delegate = self เหนือ // Add subview และเพิ่ม Code extension นี้ที่บันทัดสุดท้ายของไฟล์
+
+        extension LoginViewController: LoginButtonDelegate {
+            func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+                // no operation
+            }
+
+            func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+                guard let token = result?.token?.tokenString else {
+                    print("User failed to log in with facebook")
+                    return
+                }
+
+                let credential = FacebookAuthProvider.credential(withAccessToken: token)
+
+                FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
+                    guard let strongSelf = self else {
+                        return
+                    }
+
+                    guard authResult != nil, error == nil else {
+                        if let error = error {
+                            print("Facebook credential login failed, MFA may be needed - \(error)")
+                        }
+                        return
+                    }
+
+                    print("Successfully logged use in")
+                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+
+                })
+            }
+        }
+
+- @https://console.firebase.google.com/project/ > เมนู [Authentication] > แทปเมนู [Sign-in method] เปิดใช้งาน Facebook จากนั้น copy ID App และ App Secret จาก https://developers.facebook.com/apps/  > [Setting] > [Basic] มาใส่ในช่อง "รหัสแอพ" และ "ข้อมูลลับของแอป" คลิ๊ก [บันทึก]
+- ถึงขั้นตอนนี้ ลอง Check point ดูครับ run simulator ถ้าเราล็อกอินผ่าน Facebook สำเร็จ แอพจะเปลี่ยนไปที่ Scene Chats และ ที่แทปเมนูด้านล่าง ต้องสามารถ สลับไปมาระหว่าง Scene Chats กับ Scene Profile ได้ ถ้าเป็นตามนี้ ก็ไปต่อครับ
+-  ขั้นตอนนี้ จะเป็นการเพิ่มข้อมูลลงใน Scene Profile 
+
+        
+
 
