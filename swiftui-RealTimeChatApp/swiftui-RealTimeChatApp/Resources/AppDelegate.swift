@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return GIDSignIn.sharedInstance().handle(url)
         
     }
-    
+    // ReCheck Email to Firebase
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         guard error == nil else {
             if let error = error {
@@ -84,14 +84,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        
+        // if error
         FirebaseAuth.Auth.auth().signIn(with: credential, completion: { authResult, error in
             guard authResult != nil, error == nil else {
                 print("failed to log in with google credential")
+                // ReSent Data From Google
                 return
             }
-            
+            // if success
             print("Successfully signed in with Google cred.")
+            NotificationCenter.default.post(name: .didLogInNotification, object: nil)
             
         })
         
