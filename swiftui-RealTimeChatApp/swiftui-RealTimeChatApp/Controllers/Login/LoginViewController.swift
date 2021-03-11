@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -26,7 +27,7 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
-    // difine emailField with UITextField
+    // define emailField with UITextField
     private let emailField: UITextField = {
         let field = UITextField()
         field.autocapitalizationType = .none
@@ -42,7 +43,7 @@ class LoginViewController: UIViewController {
         return field
     }()
     
-    // difine passwordField with UITextField
+    // define passwordField with UITextField
     private let passwordField: UITextField = {
         let field = UITextField()
         field.autocapitalizationType = .none
@@ -59,7 +60,7 @@ class LoginViewController: UIViewController {
         return field
     }()
     
-    // difine loginButton with UIButton
+    // define loginButton with UIButton
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
@@ -71,15 +72,20 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    // difine Facebook loginButton with
+    // define Facebook loginButton with
     private let facebookLoginButton: FBLoginButton = {
         let button = FBLoginButton()
         button.permissions = ["email,public_profile"]
         return button
     }()
+    
+    // define google LogIn Button
+    private let googleLogInButton = GIDSignInButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // instance control Viewpoint
+        GIDSignIn.sharedInstance()?.presentingViewController = self
         // Do any additional setup after loading the view.
         title = "Log In"
         view.backgroundColor = .white
@@ -109,10 +115,10 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
             // display loginButton
         scrollView.addSubview(loginButton)
-        
-            // display Facebook loginButton
+            // display Facebook LogInButton
         scrollView.addSubview(facebookLoginButton)
-        
+            // display Google LogInButton
+        scrollView.addSubview(googleLogInButton)
     }
     // Property display image
         // After coding File Extension.swift
@@ -142,7 +148,11 @@ class LoginViewController: UIViewController {
                                    y: loginButton.bottom+10,
                                    width: scrollView.width-60,
                                    height: 52)
-        facebookLoginButton.frame.origin.y = loginButton.bottom+20
+        // For Google LogIn
+        googleLogInButton.frame = CGRect(x: 30,
+                                         y: facebookLoginButton.bottom+10,
+                                         width: scrollView.width-60,
+                                         height: 52)
     }
     
     // Create object didTabRegister
@@ -217,7 +227,7 @@ extension LoginViewController: LoginButtonDelegate {
             print("User failed to log in with facebook")
             return
         }
-        
+        // Get data from facebook
         let facebookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me",
                                                          parameters: ["fields": "email, name"],
                                                          tokenString: token,
@@ -236,24 +246,26 @@ extension LoginViewController: LoginButtonDelegate {
                     print("Faield to get email and name from fb result")
                     return
             }
-            
-            let nameComponents = userName.components(separatedBy: "")
+            // print("\(result)")
+            let nameComponents = userName.components(separatedBy: " ")
             guard nameComponents.count == 2 else {
                 return
             }
-            
+
             let firstName = nameComponents[0]
             let lastName = nameComponents[1]
-            
+            // Object DatabaseManager ตรวจสอบว่ามีอีเมล์ในฐานข้อมูลหรือไม่
             DatabaseManager.shared.userExists(with: email, completion: { exists in
+                // ถ้าไม่พบอีเมล์ในฐานข้อมูลให้แทรกอีเมล์ใหม่ลงไปในฐานข้อมูล
                 if !exists {
                     DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
                                                                         lastName: lastName,
                                                                         emailAddress: email))
                 }
             })
-            
+            // Switch Scene After LogIn Facebook Success
             let credential = FacebookAuthProvider.credential(withAccessToken: token)
+            
             FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
                 guard let strongSelf = self else {
                     return

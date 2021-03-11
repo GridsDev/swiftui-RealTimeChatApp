@@ -315,6 +315,71 @@ Check Point ณ จุดนี้ถ้าไม่ error ก็ไปต่อ
 - ถึงขั้นตอนนี้ ลอง Check point ดูครับ run simulator ถ้าเราล็อกอินผ่าน Facebook สำเร็จ แอพจะเปลี่ยนไปที่ Scene Chats และ ที่แทปเมนูด้านล่าง ต้องสามารถ สลับไปมาระหว่าง Scene Chats กับ Scene Profile ได้ ถ้าเป็นตามนี้ ก็ไปต่อครับ
 -  ขั้นตอนนี้ จะเป็นการเพิ่มข้อมูลลงใน Scene Profile 
 
+### ขั้นตอนที่ 6 Google Log In
+
+1. เปิดใช้งาน Authentication > Sign-in method > Google 
+
+2. install pod 'GoogleSignIn' 
+
+3. @GoogleService-Info.plist > REVERSED_CLIENT_ID : ดับเบิ้ลคลิ๊กและ Copy ข้อความในคอลัมน์ value แล้ว
+
+4. ไปที่ file - swiftui-RealTimeChatApp > Menu [TARGETS] > Sub menu [swiftui-RealTimeChatApp] > Tab menu [info] > Content menu [URL Types] คลิ๊กที่ปุ๋ม + ในช่อง URL Schemes ใส่"ข้อความ"ที่ Copy มาจากข้อที่ผ่านมา
+
+5. @AppDelegate.swift Coding
+
+        import ...
+        import ...
+        import ...
+        import GoogleSignIn
+
+        @UIApplicationMain
+        class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+
+            func application(...)
+            
+                // After Run Firebase Setting
+                GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+                GIDSignIn.sharedInstance()?.delegate = self
+                
+                return true
+                
+            }
+
+            func application(...) -> Bool {
+                
+                ApplicationDelegate.shared.application(...)
+                
+                // After Take Action with Return to Google Everythink
+                return GIDSignIn.sharedInstance().handle(url)
+                
+            }
+
+            func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {...}
+                
+                guard let authentication = user.authentication else { return }
+                let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                               accessToken: authentication.accessToken)
+                
+            }
+            // function delegate for google sign in delegate
+            func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+                // disconnet to Sign In Controller
+                print("Google user was disconnected")
+            }
+
+        }
         
+** Invalid redeclaration of 'application(_:open:options:)' หมายถึง การประกาศซ้ำ หรือ เคยประกาศ function ไปแล้ว
+
+6. @LoginViewController.swift 
+addCoding
+
+7. @ProfileViewController.swift
+addCoding
+
+8. @AppDelegate.swift Coding
+
+
+
 
 
