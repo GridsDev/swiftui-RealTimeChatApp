@@ -4,20 +4,23 @@
 //
 //  Created by Grids Jivapong on 24/2/2564 BE.
 //
+//  Controller and the profile view controller.
 
 import UIKit
 import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
 
+// Config Log Out View
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet var tableView: UITableView!
-    
+    // Config Log Out Button View
     let data = ["Log Out"]
-    
+    // Config Table View
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Config register Button View
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: "cell")
         tableView.delegate = self
@@ -27,6 +30,7 @@ class ProfileViewController: UIViewController {
 
 }
 
+// Extension Class Table View (delegate = UITableViewDelegate, dataSource = UITableViewDataSource)
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -39,10 +43,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.textColor = .red
         return cell
     } // end function property
-    // function for logout
+    
+    // function for logout (didSelectRowAt)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        // pop up Alert
         let actionSheet = UIAlertController(title: "",
                                       message: "",
                                       preferredStyle: .actionSheet)
@@ -59,7 +64,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                         GIDSignIn.sharedInstance()?.signOut()
                                         
                                         do {
-                                            
+                                            // command signOut relete FirebaseAuth
                                             try FirebaseAuth.Auth.auth().signOut()
                                             
                                             let vc = LoginViewController()

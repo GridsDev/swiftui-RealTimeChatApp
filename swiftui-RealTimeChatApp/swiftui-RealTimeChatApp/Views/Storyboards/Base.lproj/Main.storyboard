@@ -102,7 +102,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="zsl-PQ-pQO"/>
                     <connections>
-                        <outlet property="tableView" destination="Fd4-5X-eMt" id="9B4-Zb-sI7"/>
+                        <outlet property="tableView" destination="Fd4-5X-eMt" id="irq-hW-AHn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WcB-hJ-3qT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

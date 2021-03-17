@@ -112,7 +112,7 @@ class LoginViewController: UIViewController {
         // open // this underline After Coding Extension LoginViewController Complate
         emailField.delegate = self
         passwordField.delegate = self
-        
+        // request data from facebook
         facebookLoginButton.delegate = self
         
         // Add subviews
@@ -126,8 +126,10 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
             // display loginButton
         scrollView.addSubview(loginButton)
+        
             // display Facebook LogInButton
         scrollView.addSubview(facebookLoginButton)
+        
             // display Google LogInButton
         scrollView.addSubview(googleLogInButton)
     }
@@ -166,6 +168,8 @@ class LoginViewController: UIViewController {
                                    y: loginButton.bottom+10,
                                    width: scrollView.width-60,
                                    height: 52)
+        facebookLoginButton.frame.origin.y = loginButton.bottom+20
+        
         // For Google LogIn
         googleLogInButton.frame = CGRect(x: 30,
                                          y: facebookLoginButton.bottom+10,
@@ -221,7 +225,7 @@ class LoginViewController: UIViewController {
     }
 
 }
-
+// extension login with email
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -234,7 +238,7 @@ extension LoginViewController: UITextFieldDelegate {
         
     }
 }
-// extension content facebook longin
+// extension content facebook login
 extension LoginViewController: LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         // no operation
